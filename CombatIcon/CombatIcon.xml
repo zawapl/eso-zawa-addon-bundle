@@ -1,0 +1,16 @@
+<GuiXml>
+    <Controls>
+        <TopLevelControl name="ZAB_CombatIcon">
+            <Dimensions x="64" y="64" />
+            <Anchor point="TOP" relativeTo="ZAB_RidingSkillTrainingIcon" relativePoint="BOTTOM" />
+            <Controls>
+                <Texture name="$(parent)Texture"
+                         textureFile="/esoui/art/zonestories/completiontypeicon_worldevents.dds">
+                    <Dimensions x="64" y="64" />
+                    <Anchor point="CENTER" />
+                </Texture>
+            </Controls>
+        </TopLevelControl>
+    </Controls>
+</GuiXml>
+
