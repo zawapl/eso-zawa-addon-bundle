@@ -13,17 +13,18 @@ lang/$(language).lua
 
 Settings.lua
 
+Utils/Research.lua
+
 NotificationIcons/NotificationIcons.xml
 NotificationIcons/NotificationIcons.lua
 
-RidingSkillTrainingIcon/RidingSkillTrainingIcon.xml
 RidingSkillTrainingIcon/RidingSkillTrainingIcon.lua
 
-CombatIcon/CombatIcon.xml
-CombatIcon/CombatIcon.lua
-
-StaticIcon/StaticIcon.xml
-StaticIcon/StaticIcon.lua
+ResearchReminder.lua
 
 RidingSkillAutoTrainer/RidingSkillAutoTrainer.lua
+
+Test/Test.lua
+
+ResearchAutomator.lua
 

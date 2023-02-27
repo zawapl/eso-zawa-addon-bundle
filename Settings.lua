@@ -1,3 +1,12 @@
+local LABEL = "Settings"
+local ID = "ZAB_" .. LABEL
+
+local function Not(func)
+    return function()
+        return not func()
+    end
+end
+
 -- Initialize settings and saved vars for the whole addon
 function ZAB.InitializeSettings()
     local saved_vars_name = "ZAB_Data"
@@ -22,6 +31,82 @@ function ZAB.InitializeSettings()
 
     local optionsTable = {
         settings:GetLibAddonMenuAccountCheckbox(),
+        -- NotificationIcons Settings
+        {
+            type = "header",
+            name = ZAB.lang.NOTIFICATION_ICONS_HEADER,
+            width = "full",
+        },
+        {
+            type = "checkbox",
+            name = ZAB.lang.NOTIFICATION_ICONS_ENABLED,
+            tooltip = "",
+            getFunc = ZAB.NotificationIcons.IsEnabled,
+            setFunc = ZAB.NotificationIcons.SetEnabled,
+            default = ZAB.Settings.notificationIcons.enabled,
+            width = "full",
+        },
+        {
+            type = "checkbox",
+            name = ZAB.lang.NOTIFICATION_ICONS_VERTICAL,
+            tooltip = "",
+            getFunc = ZAB.NotificationIcons.IsVertical,
+            setFunc = ZAB.NotificationIcons.SetVertical,
+            default = ZAB.Settings.notificationIcons.vertical,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+            width = "full",
+        },
+        {
+            type = "dropdown",
+            name = ZAB.lang.NOTIFICATION_ICON_ALIGNMENT,
+            tooltip = "",
+            getFunc = ZAB.NotificationIcons.GetAlignment,
+            setFunc = ZAB.NotificationIcons.SetAlignment,
+            choices = ZAB.NotificationIcons.GetAlignmentLabels(),
+            choicesValues = ZAB.NotificationIcons.GetAlignmentValues(),
+            default = ZAB.Settings.notificationIcons.alignment,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+            width = "full",
+        },
+        {
+            type = "editbox",
+            name = "x offset",
+            tooltip = "",
+            getFunc = ZAB.NotificationIcons.GetXOffset,
+            setFunc = ZAB.NotificationIcons.SetXOffset,
+            default = ZAB.Settings.notificationIcons.xOffset,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+            isMultiline = false,
+            width = "full",
+        },
+        {
+            type = "editbox",
+            name = "y offset",
+            tooltip = "",
+            getFunc = ZAB.NotificationIcons.GetYOffset,
+            setFunc = ZAB.NotificationIcons.SetYOffset,
+            default = ZAB.Settings.notificationIcons.yOffset,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+            isMultiline = false,
+            width = "full",
+        },
+        {
+            type = "button",
+            name = ZAB.lang.NOTIFICATION_ICONS_REFRESH_ICONS,
+            width = "half",
+            func = ZAB.NotificationIcons.RefreshIcons,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+        },
+        {
+            type = "button",
+            name = ZAB.lang.NOTIFICATION_ICONS_SHOW_ALL_ICONS,
+            width = "half",
+            func = ZAB.NotificationIcons.ShowAllIcons,
+            disabled = Not(ZAB.NotificationIcons.IsEnabled),
+        },
+
+
+        -- Mount training settings
         {
             type = "header",
             name = ZAB.lang.MOUNT_TRAINING_HEADER,
@@ -53,10 +138,16 @@ function ZAB.InitializeSettings()
             setFunc = ZAB.RidingSkillAutoTrainer.SetPriorityListID,
             choices = ZAB.RidingSkillAutoTrainer.GetPriorityListChoiceLabels(),
             choicesValues = ZAB.RidingSkillAutoTrainer.GetPriorityListChoices(),
-            disabled = function()
-                return not ZAB.RidingSkillAutoTrainer.IsEnabled()
-            end,
             default = ZAB.Settings.ridingSkillTraining.skillPriorityListId,
+            disabled = Not(ZAB.RidingSkillAutoTrainer.IsEnabled),
+            width = "full",
+        },
+
+
+        -- Debug mode
+        {
+            type = "header",
+            name = ZAB.lang.DEBUG_MODE,
             width = "full",
         },
         {
@@ -71,6 +162,18 @@ function ZAB.InitializeSettings()
             end,
             default = ZAB.Settings.debug,
             width = "full",
+        },
+        {
+            type = "button",
+            name = "Test Button A",
+            width = "half",
+            func = ZAB.Test.OnButtonPressA
+        },
+        {
+            type = "button",
+            name = "Test Button B",
+            width = "half",
+            func = ZAB.Test.OnButtonPressB
         }
     }
 

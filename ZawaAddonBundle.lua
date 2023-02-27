@@ -9,19 +9,29 @@ ZAB = {
             automated = false,
             skillPriorityListId = 1
         },
-        combatIcon = false,
-        staticIcon = false,
+        notificationIcons = {
+            enabled = false,
+            alignment = RIGHT,
+            vertical = true,
+            xOffset = 0,
+            yOffset = 0
+        },
+        researchAutomator = {
+            enabled = false,
+            researchableSets = {}
+        },
         debug = false
     }
 }
 
 -- Initialize all sub addons
 local function InitializeSubAddons()
+    ZAB.NotificationIcons.SetEnabled(true)
     ZAB.RidingSkillTrainingIcon.SetEnabled(ZAB.Settings.ridingSkillTraining.remainderIcon)
     ZAB.RidingSkillAutoTrainer.SetEnabled(ZAB.Settings.ridingSkillTraining.automated)
 
-    ZAB.CombatIcon.SetEnabled(ZAB.Settings.combatIcon)
-    ZAB.StaticIcon.SetEnabled(ZAB.Settings.staticIcon)
+    ZAB.ResearchAutomator.SetEnabled(true)
+    ZAB.ResearchReminder.SetEnabled(true)
 end
 
 

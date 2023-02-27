@@ -1,8 +1,12 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="ZAB_NotificationIcons" >
-            <Dimensions x="64" y="64" />
-            <Anchor point="RIGHT" relativeTo="GuiRoot" relativePoint="RIGHT" />
+        <!-- Root for all the icons -->
+        <TopLevelControl name="ZAB_NotificationIcons">
+            <AnchorFill />
+            <Controls>
+                <Label name="ZAB_NotificationIcons_Content" font="$(BOLD_FONT)|$(KB_54)|soft-shadow-thick" text="">
+                </Label>
+            </Controls>
         </TopLevelControl>
     </Controls>
 </GuiXml>

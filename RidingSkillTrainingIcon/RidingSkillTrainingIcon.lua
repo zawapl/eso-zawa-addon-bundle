@@ -13,7 +13,10 @@ local function OnMountInfoUpdated()
     local remaining, _ = GetTimeUntilCanBeTrained()
     local showIcon = (not maxedOut) and (remaining < 1000)
     ZAB.Debug(LABEL, "OnMountInfoUpdated", { showIcon = showIcon })
-    ZAB.NotificationIcons.SetVisible(ZAB_RidingSkillTrainingIcon, showIcon)
+    ZAB.NotificationIcons.SetVisible("/esoui/art/mounts/tabicon_ridingskills_up.dds", showIcon)
+    if showIcon then
+        ZO_Alert(UI_ALERT_CATEGORY_ALERT, SOUNDS.NEGATIVE_CLICK, ZAB.lang.MOUNT_TRAINING_REMINDER_ALERT)
+    end
 end
 
 
@@ -32,8 +35,6 @@ function Self.SetEnabled(isEnabled)
         OnMountInfoUpdated()
     else
         EVENT_MANAGER:UnregisterForEvent(ID, EVENT_MOUNT_INFO_UPDATED)
-        ZAB.NotificationIcons.SetVisible(ZAB_RidingSkillTrainingIcon, false)
+        ZAB.NotificationIcons.SetVisible("/esoui/art/mounts/tabicon_ridingskills_up.dds", false)
     end
 end
-
--- Look at my |t32:32:esoui/art/icons/mounticon_horse_a.dds|t

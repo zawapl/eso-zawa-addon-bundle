@@ -23,7 +23,6 @@ local function OnRidingSkillImproved(_, _, _, _, source)
     if source == RIDING_TRAIN_SOURCE_STABLES then
         ZAB.Debug(LABEL, "OnRidingSkillImproved successful")
         EVENT_MANAGER:UnregisterForEvent(ID, EVENT_RIDING_SKILL_IMPROVEMENT)
-        OnMountInfoUpdated();
         EndInteraction(INTERACTION_STABLE)
     else
         ZAB.Debug(LABEL, "OnRidingSkillImproved unsuccessful", { source = source })
@@ -40,7 +39,7 @@ local function OnStableInteractStart()
 
     local inventoryBonus, maxInventoryBonus, staminaBonus, maxStaminaBonus, speedBonus, maxSpeedBonus = GetRidingStats()
 
-    for _, v in ipairs(PRIORITY_LISTS[1]) do
+    for _, v in ipairs(PRIORITY_LISTS[ZAB.Settings.ridingSkillTraining.skillPriorityListId]) do
         if v == RIDING_TRAIN_CARRYING_CAPACITY then
             if inventoryBonus < maxInventoryBonus then
                 ZAB.Debug(LABEL, "OnStableInteractStart RIDING_TRAIN_CARRYING_CAPACITY")
