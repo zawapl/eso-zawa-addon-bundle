@@ -20,6 +20,10 @@ ZAB = {
             enabled = false,
             researchableSets = {}
         },
+        questReminders = {
+            lastCompleted = {
+            }
+        },
         debug = false
     }
 }
@@ -32,6 +36,7 @@ local function InitializeSubAddons()
 
     ZAB.ResearchAutomator.SetEnabled(true)
     ZAB.ResearchReminder.SetEnabled(true)
+    ZAB.CraftingWritReminder.SetEnabled(true)
 end
 
 
@@ -57,11 +62,12 @@ function ZAB.Debug(label, message, vars)
     if vars then
         local i = 1
         for key in pairs(vars) do
-            params = params .. string.format("|cA9B7C6%s|r|cA9B7C6=|r|c88DD88%s|r ", tostring(key), tostring(vars[key]))
+            local val = "nil"
+            pcall(function() val = tostring(vars[key]) end)
+            params = params .. string.format("|cA9B7C6%s|r|cA9B7C6=|r|c88DD88%s|r ", tostring(key), val)
             i = i + 1
         end
     end
 
-    message = string.format("|c808080[%s:%s]|r |cFFFFFF%s|r %s", "ZAB", label, message, params)
-    d(message)
+    d(string.format("|c808080[%s:%s]|r |cFFFFFF%s|r %s", "ZAB", label, message, params))
 end

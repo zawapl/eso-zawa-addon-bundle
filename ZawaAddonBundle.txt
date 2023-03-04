@@ -21,6 +21,7 @@ NotificationIcons/NotificationIcons.lua
 RidingSkillTrainingIcon/RidingSkillTrainingIcon.lua
 
 ResearchReminder.lua
+CraftingWritReminder.lua
 
 RidingSkillAutoTrainer/RidingSkillAutoTrainer.lua
 

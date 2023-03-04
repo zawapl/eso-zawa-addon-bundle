@@ -144,6 +144,10 @@ function ZAB.InitializeSettings()
         },
 
 
+        -- Research
+        ZAB.ResearchUtils.BuildSetSettings(),
+
+
         -- Debug mode
         {
             type = "header",
